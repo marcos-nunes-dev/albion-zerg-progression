@@ -44,12 +44,12 @@ client.once(Events.ClientReady, async readyClient => {
         console.error('❌ Error deploying commands:', error);
     }
 
-    // Start cron job for hourly updates
-    cron.schedule('0 * * * *', async () => {
+    // Start cron job for updates every 3 hours
+    cron.schedule('0 */3 * * *', async () => {
         console.log('⏰ Running scheduled guild progression update...');
         await guildProgressionService.updateGuildProgression();
     });
-    console.log('⏰ Cron job scheduled for hourly guild progression updates');
+    console.log('⏰ Cron job scheduled for guild progression updates every 3 hours');
 });
 
 // Handle slash command interactions
